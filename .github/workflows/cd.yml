@@ -23,3 +23,29 @@ jobs:
 
       - name : Build the app
         run  : npm run build
+
+      - name: Google Cloud Auth
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+
+      - name: Configure Docker for Artifact Registry
+        run: |
+          gcloud auth configure-docker us-central1-docker.pkg.dev
+
+      - name: Build and Push Docker image
+        env:
+          REGION: us-central1
+          PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          REPOSITORY: notely-ar-repo
+          IMAGE: notely
+          TAG: latest
+        run: |
+          # Build the Docker image
+          docker build -t $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$TAG .
+          
+          # Push to Artifact Registry
+          docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$TAG

@@ -3,3 +3,31 @@ coverage/
 dist/
 .env
 .vscode
+
+
+# Google Cloud SDK
+google-cloud-sdk/
+lib/google-cloud-sdk/
+cloud-sdk/
+*.sdk
+
+# GCP credentials and config
+*.json
+gcp-credentials.json
+*.private-key.json
+.gcloud/
+.gce/
+.config/gcloud/
+.config/gcloud/logs/
+
+# Environment files with GCP config
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

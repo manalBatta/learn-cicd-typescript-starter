@@ -38,6 +38,7 @@ jobs:
       - name: migrations 
         run: npm run db:migrate
         
+        
       - name: Build and Push with gcloud builds submit
         env:
           REGION: us-central1

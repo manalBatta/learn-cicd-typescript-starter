@@ -46,4 +46,4 @@ jobs:
             .
 
       - name: Deploy to Cloud Run
-        run: gcloud run deploy notely --image REGION-docker.pkg.dev/fresh-entity-489314-u6/notely-ar-repo/notely:latest --region REGION --allow-unauthenticated --project fresh-entity-489314-u6 --max-instances=4
+        run: gcloud run deploy notely --image REGION-docker.pkg.dev/fresh-entity-489314-u6/notely-ar-repo/notely:latest --region us-central1 --allow-unauthenticated --project fresh-entity-489314-u6 --max-instances=4
